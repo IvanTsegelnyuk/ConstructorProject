@@ -46,6 +46,6 @@ public class Main {
     }
 
     public static void test() {
-
+        System.out.println("changes made in branch new_feature1");
     }
 }
