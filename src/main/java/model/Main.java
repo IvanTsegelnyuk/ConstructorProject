@@ -44,4 +44,8 @@ public class Main {
     public static boolean isPalindrome(String text) {
         return true;
     }
+
+    public static void test() {
+
+    }
 }
