@@ -40,4 +40,8 @@ public class Main {
         if (Math.abs(result) < Math.abs(prevResult)) return result;
         else return result > prevResult ? result : prevResult;
     }
+
+    public static boolean isPalindrome(String text) {
+        return true;
+    }
 }
