@@ -1,16 +1,16 @@
 package model;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Main {
 
     public static void main(String[] args) {
-        String input = "ПппппппппПППппппррррррРРрррррррииВееееееееЕЕЕеетттттттт!!!!!";
-        System.out.println(test(input));
+//        String input = "ПппппппппПППппппррррррРРрррррррииВееееееееЕЕЕеетттттттт!!!!!";
+//        System.out.println(test(input));
 
 //        System.out.println(getClosestToZero(List.of(9, 3, -5, 4, -4, 7, 3, 11, -3, -2, -1)));
 //
@@ -25,8 +25,21 @@ public class Main {
 //        System.out.println(mySqrt(2147483647));
 //        System.out.println(Integer.MAX_VALUE);
 //        System.out.println(Integer.MAX_VALUE / 2);
-        Integer x = 15;
-        System.out.println(x.hashCode());
+//        Integer x = 15;
+//        System.out.println(x.hashCode());
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        map.put(1, List.of(1,2,3,4,5,6));
+        map.put(2, List.of(10,20,30,40,50,60));
+
+        /*List<Integer> result = */map.entrySet().stream().flatMap(entry -> {
+            int key = entry.getKey();
+            List<Integer> list = entry.getValue();
+            return list.stream().map(num -> Map.entry(num, key));
+        }).forEach(action -> {
+            System.out.println("Ключ: " + action.getKey());
+            System.out.println("Значение: " + action.getValue());
+        });
+//        result.forEach(System.out::println);
     }
 
 
@@ -224,5 +237,40 @@ public class Main {
 
 
         return 0;
+    }
+
+    public static <T> List<T> extractMap(Map<T, List<T>> map) {
+
+        return map.entrySet().stream().flatMap(entry -> entry.getValue().stream()).toList();
+    }
+
+    public static void merge(int[] nums1, int m, int[] nums2, int n) {
+//        You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.
+//
+//                Merge nums1 and nums2 into a single array sorted in non-decreasing order.
+//
+//                The final sorted array should not be returned by the function, but instead be stored inside the array nums1. To accommodate this, nums1 has a length of m + n, where the first m elements denote the elements that should be merged, and the last n elements are set to 0 and should be ignored. nums2 has a length of n.
+//
+//
+//
+//        Example 1:
+//
+//        Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
+//        Output: [1,2,2,3,5,6]
+//        Explanation: The arrays we are merging are [1,2,3] and [2,5,6].
+//        The result of the merge is [1,2,2,3,5,6] with the underlined elements coming from nums1.
+//                Example 2:
+//
+//        Input: nums1 = [1], m = 1, nums2 = [], n = 0
+//        Output: [1]
+//        Explanation: The arrays we are merging are [1] and [].
+//                The result of the merge is [1].
+//                Example 3:
+//
+//        Input: nums1 = [0], m = 0, nums2 = [1], n = 1
+//        Output: [1]
+//        Explanation: The arrays we are merging are [] and [1].
+//                The result of the merge is [1].
+//                Note that because m = 0, there are no elements in nums1. The 0 is only there to ensure the merge result can fit in nums1.
     }
 }
